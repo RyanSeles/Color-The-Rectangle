@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+
+/***********************************************************
+Description: "Moving Object"
+Rational: A Short Interactive Program to Illustrate
+          - documentation
+          -Structure for code maintenance
+          -displaying text
+          -flow control
+Author: Ryan Seles
+***********************************************************/
+
+//--------------Global Variables and Initializations
+
+var player1height;
+var player1width;
+player1height = 25;
+player1width = 25;
+var player1x = 410;
+var player1y = 290;
+var oldplayer1x = player1x;
+var oldplayer1y = player1y;
+var player1yspeed = 1;
+var player1xspeed = 1;
+var oldplayer1xspeed = player1xspeed;
+var oldplayer1yspeed = player1yspeed;
+
+
+// constructing the canvas
+var canvas = document.createElement('canvas');
+window.onload = function() {
+  document.body.appendChild(canvas);
+}
+// setting the dimensions of the canvas
+var height = "600";
+var width = "900";
+canvas.height = height;
+canvas.width = width;
+canvas.style = "position:absolute; left: 50%; width: 1000px; margin-left: -500px;";
+var context = canvas.getContext ('2d');
+context.font = "30px verdana";
+var KeepPlaying =true;
+
+var keysDown = {};
+
+window.addEventListener("keydown", function(event) {
+  keysDown[event.keyCode] = true;
+});
+
+window.addEventListener("keyup", function(event) {
+  delete keysDown[event.keyCode];
+});
+
+
+
+
+//--------------------Function Declarations--------------------\\
+
+function frameNext(){
+  ClearCanvas();
+  blackCanvas();
+  DisplayText();
+  displaysnapShot();
+  snapShot();
+}
+
+function ClearCanvas(colour)
+{
+  context.fillStyle = colour;
+  context.fillRect(0,0,width,height);
+}
+
+function blackCanvas()
+{
+context.fillStyle = "black";
+context.fillRect(900,600);
+}
+
+
+function DisplayText(text){
+  context.beginPath();
+  context.fillStyle = "white";
+  context.fillText(text,350,30);
+  context.stroke();
+}
+function displaysnapShot()
+{
+/*  alert("You Win!"){
+  if (player1x > 370 && player1x < 445 && player1y > 375 && player1y > 200)
+    alert = true;
+  */
+  setInterval(snapShot,20);
+}
+
+
+function snapShot() {
+
+  if (player1x < 320 )
+  { player1x = 410;
+    player1y = 290;
+  }
+
+  if (player1x > 495 )
+    { player1x = 410;
+      player1y = 290;
+    }
+
+    if (player1y > 375 )
+      { player1x = 410;
+        player1y = 290;
+      }
+
+        if (player1y < 200 )
+            { player1x = 410;
+              player1y = 290;
+            }
+
+            function boxIsGreen(x,y,width,height){
+            for (var x = 320; x < 520; x++){
+            for (var y = 200; y < 400; y++):{
+            if (imgData=context.getImageData(320,200,200,200)="green"){
+
+                  }
+                }
+              }
+            }
+
+
+  context.fillStyle="green";
+  context.fillRect (oldplayer1x,oldplayer1y,25,25);
+
+  context.fillStyle ="white";
+  context.fillRect(player1x,player1y,25,25);
+
+  context.beginPath();
+  context.strokeStyle ="orange";
+  context.rect(320,200,200,200);//first and second values tell you where to start drawing the box from 0,0
+  context.stroke(); //third and fourth values tell you how large you want the box to be
+
+  oldplayer1y=player1y;
+  oldplayer1x=player1x;
+  // Interpret Keyboard Input
+
+  for(var key in keysDown)
+  {
+    var value = Number(key);
+    if(value == 38)
+    { // down arrow
+      player1y -= player1yspeed;
+    }
+    else if (value == 40)
+    { // up arrow
+      player1y += player1yspeed;
+    }
+    else if (value == 37)
+    { // left arrow
+        player1x -= player1xspeed;
+    }
+    else if (value == 39)
+    { // right arrow
+          player1x += player1xspeed;
+    }
+    else {}
+  }
+}
+
+//----------------------------------Main Program
+ClearCanvas("black");
+DisplayText("Level 2");
+displaysnapShot();
+</script>
+</body>
+</html>
