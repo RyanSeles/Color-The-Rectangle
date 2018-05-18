@@ -94,6 +94,7 @@ function DisplayText(text){
   context.beginPath();
   context.fillStyle = "white";
   context.fillText(text,350,30);
+  if (playerHasWon){context.fillText("Winner",350,200);}
   context.stroke();
 }
 function displaysnapShot()
@@ -105,9 +106,8 @@ function displaysnapShot()
   setInterval(snapShot,20);
 }
 
-/*function IsBoxGreen(leftx,rightx,botty,topy){
-  Boolean greenSoFar = true;
-
+function IsBoxGreen(leftx,rightx,botty,topy){
+  var greenSoFar = true;
   var x;
   var y;
   for (x=leftx; x < rightx; x +=1){
@@ -124,25 +124,25 @@ function displaysnapShot()
   if (greenSoFar){return true;}
   if (!greenSoFar){return false;}
 }
-*/
+
 function snapShot() {
 
-  if (player1x < 370 )
+  if (player1x < 360 )
   { player1x = 410;
     player1y = 290;
   }
 
-  if (player1x > 445 )
+  if (player1x > 455 )
     { player1x = 410;
       player1y = 290;
     }
 
-    if (player1y > 375 )
+    if (player1y > 400 )
       { player1x = 410;
         player1y = 290;
       }
 
-        if (player1y < 200 )
+        if (player1y < 190 )
             { player1x = 410;
               player1y = 290;
             }
@@ -156,6 +156,7 @@ function snapShot() {
 
   context.beginPath();
   context.strokeStyle ="orange";
+  context.lineWidth =2;
   context.rect(370,200,100,200);//first and second values tell you where to start drawing the box from 0,0
   context.stroke(); //third and fourth values tell you how large you want the box to be
 
