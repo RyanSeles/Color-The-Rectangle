@@ -106,13 +106,13 @@ function displaysnapShot()
   setInterval(snapShot,20);
 }
 
-function IsBoxGreen(leftx,rightx,botty,topy){
+function IsBoxGreen(leftx,rightx,bottom,topy){
   var greenSoFar = true;
   var x;
   var y;
   for (x=leftx; x < rightx; x +=1){
     for(y=bottom; y < topy; y +=1){
-      if (context,getImageData(x,y,1,1)!=="green"){
+      if (context,getImageData(x,y,1,1)!="green"){
         greenSoFar = false;
         break;
       }
@@ -148,6 +148,8 @@ function snapShot() {
             }
 
 
+
+
   context.fillStyle="green";
   context.fillRect (oldplayer1x,oldplayer1y,25,25);
 
@@ -170,28 +172,46 @@ function snapShot() {
     if(value == 38)
     { // down arrow
       player1y -= player1yspeed;
-      playerHasWon = IsBoxGreen();
-
+      playerHasWon = IsBoxGreen(368,466,202,396);
     }
     else if (value == 40)
     { // up arrow
       player1y += player1yspeed;
-      playerHasWon = IsBoxGreen();
+      playerHasWon = IsBoxGreen(368,466,202,396);
     }
     else if (value == 37)
     { // left arrow
         player1x -= player1xspeed;
-        playerHasWon = IsBoxGreen();
+        playerHasWon = IsBoxGreen(368,466,202,396);
     }
     else if (value == 39)
     { // right arrow
           player1x += player1xspeed;
-          playerHasWon = IsBoxGreen();
+          playerHasWon = IsBoxGreen(368,466,202,396);
     }
     else {}
   }
 
 }
+/*if (player1x < 320 )
+{ player1x = 410;
+  player1y = 290;
+}
+
+if (player1x > 495 )
+  { player1x = 410;
+    player1y = 290;
+  }
+
+  if (player1y > 375 )
+    { player1x = 410;
+      player1y = 290;
+    }
+
+      if (player1y < 200 )
+          { player1x = 410;
+            player1y = 290;
+          } */
 
 //----------------------------------Main Program
 ClearCanvas("black");
