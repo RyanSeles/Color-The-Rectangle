@@ -108,13 +108,18 @@ function displaysnapShot()
 
 function IsBoxGreen(leftx,rightx,bottom,topy){
   var greenSoFar = true;
+  var pixelData;
   var x;
   var y;
   for (x=leftx; x < rightx; x +=1){
     for(y=bottom; y < topy; y +=1){
-      if (context,getImageData(x,y,1,1)!="green"){
+      pixelData=context.getImageData(x,y,1,1)
+      if (pixelData.data[0]+","+
+          pixelData.data[1]+","+
+          pixelData.data[2]+","+
+          pixelData.data[3] != "0,128,0,255"){
         greenSoFar = false;
-        break;
+        if (!greenSoFar){return false;}
       }
     }
       if (!greenSoFar){
@@ -122,7 +127,7 @@ function IsBoxGreen(leftx,rightx,bottom,topy){
       }
   }
   if (greenSoFar){return true;}
-  if (!greenSoFar){return false;}
+
 }
 
 function snapShot() {
